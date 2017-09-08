@@ -85,7 +85,7 @@ function TokenAuthHandler:access(conf)
         if err then
             return responses.send(402, err)
         else
-            ngx.req.set_header(conf.user_key, info);
+            ngx.req.set_header(conf.user_key, info)
         end
     end
 end

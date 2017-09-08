@@ -8,7 +8,7 @@
 return {
   no_consumer = true,
   fields = {
-      user_key = { type = "string", default = "Account-Id"},
+      user_key = { type = "string", default = "open_id"},
       token_prefix = { type = "string", default = ""},
       redis_host = { type = "string" , default = "localhost"},
       redis_port = { type = "number", default = 6379 },
