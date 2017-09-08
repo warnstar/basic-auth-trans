@@ -8,6 +8,7 @@ local responses = require "kong.tools.responses"
 local BasePlugin = require "kong.plugins.base_plugin"
 local redis = require("kong.plugins.basic-auth-trans.redis")
 
+
 local TokenAuthHandler = BasePlugin:extend()
 
 TokenAuthHandler.PRIORITY = 1000
@@ -53,12 +54,12 @@ local function query_and_validate_token(token, conf)
 
     local res, err = red:exec(
         function(red)
-            return red:get(token)
+            return red:hget(token, "union_id")
         end
     )
 
     if not res then
-        return nil, "redis:"..err
+        return nil, "redis err:"..err
     end
 
     if res == ngx.null then
