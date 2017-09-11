@@ -13,5 +13,6 @@ return {
       redis_host = { type = "string" , default = "localhost"},
       redis_port = { type = "number", default = 6379 },
       redis_database = { type = "number", default = 0 },
+      redis_password = { type = "string", default = ""},
   }
 }

@@ -47,14 +47,15 @@ local function query_and_validate_token(token, conf)
     local redisConfig = {
         host = conf.redis_host,
         port = conf.redis_port,
-        database = conf.redis_database
+        database = conf.redis_database,
+        password = conf.redis_password
     }
 
     local red = redis.new(redisConfig)
 
     local res, err = red:exec(
         function(red)
-            return red:hget(token, "union_id")
+            return red:hget(token, conf.user_key)
         end
     )
 

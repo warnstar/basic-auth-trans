@@ -33,6 +33,14 @@ function _M.exec(self, func)
         return nil, err
     end
 
+    if self.password ~= "" then
+        ok, err = red:auth(self.password)
+        if not ok then
+            return nil, err
+        end
+    end
+
+
     red:select(self.database)
 
     local res, err = func(red)
@@ -50,6 +58,7 @@ function _M.new(opts)
     local self = {
         host = config.host or "127.0.0.1",
         port = config.port or 6379,
+        password = config.password or "",
         timeout = config.timeout or 5000,
         database = config.database or 0,
         max_idle_time = config.max_idle_time or 60000,
