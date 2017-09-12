@@ -1,3 +1,3 @@
-FROM kong:latest
+FROM kong:0.11
 
 ENTRYPOINT ping 127.0.0.1
