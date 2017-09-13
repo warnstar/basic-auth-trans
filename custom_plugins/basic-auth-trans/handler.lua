@@ -80,14 +80,16 @@ function TokenAuthHandler:access(conf)
     TokenAuthHandler.super.access(self)
 
     local token, err = extract_token(ngx.req)
-
     if token then
+
         local info, err = query_and_validate_token(conf.token_prefix..token, conf)
 
         if err then
             return responses.send(402, err)
         else
-            ngx.req.set_header(conf.user_key, info)
+            --- 下划线转换成中杠
+            local absKey = string.gsub(conf.user_key, "_", "-")
+            ngx.req.set_header(absKey, info)
         end
     end
 end
