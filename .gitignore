@@ -3,3 +3,4 @@
 .idea
 
 /kong
+docker-compose.yml
