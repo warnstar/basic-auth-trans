@@ -4,3 +4,4 @@
 
 /kong
 docker-compose.yml
+kong_defaults.lua
