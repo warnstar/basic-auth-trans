@@ -5,3 +5,4 @@
 /kong
 docker-compose.yml
 kong_defaults.lua
+nginx_kong.lua

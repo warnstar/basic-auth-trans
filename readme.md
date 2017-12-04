@@ -5,5 +5,10 @@
 
 ## 部署
 1. 使用docker-compose构建
-2. 进入kong容器，进行数据库迁移：kong migrations up
-3. 重新运行kong容器
+2. 文件配置
+    - 'kong_defaults.lua'
+        - 首要是pg-db
+    - 'docker-compose.yml'
+    - 存放ssl证书
+3. 进入kong容器，进行数据库迁移：kong migrations up
+4. 重新运行kong容器
