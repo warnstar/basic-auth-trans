@@ -1,18 +1,9 @@
-pg-kong:
-    image: "postgres:9.4"
-    environment:
-        POSTGRES_USER: kong
-        POSTGRES_DB: kong
-    ports:
-      - "5432:5432"
 kong:
-    image: kong:0.11
+    build: ./docker/kong
     ports:
       - "80:8000"
       - "443:8443"
       - "8001:8001"
-      - "7946:7946"
-      - "7946:7946/udp"
     volumes:
       - ./logs:/usr/local/kong/logs
       - ./custom_plugins/basic-auth-trans:/usr/local/share/lua/5.1/kong/plugins/basic-auth-trans
@@ -20,14 +11,8 @@ kong:
       - ./nginx_kong.lua:/usr/local/share/lua/5.1/kong/templates/nginx_kong.lua
       - ./docker/kong/ssl/ssl.crt:/usr/local/kong/ssl/kong-default.crt
       - ./docker/kong/ssl/ssl.key:/usr/local/kong/ssl/kong-default.key
-    links:
-      - "pg-kong"
     environment:
-      KONG_DATABASE : postgres
-      KONG_CASSANDRA_CONTACT_POINTS : pg-kong
-      KONG_PG_HOST : pg-kong
-      KONG_PG_USER :
-      KONG_PG_PASSWORD :
+          KONG_DATABASE : postgres
 
 konga:
     image: pantsel/konga
@@ -38,8 +23,8 @@ konga:
     environment:
       NODE_ENV : development
       DB_ADAPTER: mysql
-      DB_HOST: mops-pulse-dev.lianluo.com
-      DB_USER: wchuangtest
-      DB_PASSWORD: Test.1234%^#
-      DB_DATABASE: konga
+      DB_HOST:
+      DB_USER:
+      DB_PASSWORD:
+      DB_DATABASE:
 
