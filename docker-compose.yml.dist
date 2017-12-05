@@ -15,7 +15,7 @@ kong:
           KONG_DATABASE : postgres
 
 konga:
-    image: pantsel/konga
+    image: pantsel/konga:0.9.0
     ports:
       - "1337:1337"
     links:
@@ -24,6 +24,7 @@ konga:
       NODE_ENV : development
       DB_ADAPTER: mysql
       DB_HOST:
+      DB_PORT:
       DB_USER:
       DB_PASSWORD:
       DB_DATABASE:
